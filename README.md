@@ -22,7 +22,11 @@ This scipt will execute all the commands necessaary for taking backup during rel
 
 ### How to run
 - git clone https://github.com/bahmni-msf/backup-script.git ( from any path)
-- set the release_version variable to current release value in backup.py
+- set the release_version variable to current release value in backup.py (line #4)
+```
+Ex. 
+release_version = "release_1.0"
+```
 - to execute the backup commands trigger the backup.py(from the same path where it resides)
 by running below commands
 ```python backup.py```
