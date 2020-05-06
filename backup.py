@@ -1,7 +1,7 @@
 import sys
 import os
 
-release_version = "release_1.0"
+release_version = "1.0"
 
 # Update the release version to current one.
 with open("backup_cmd", 'r') as o, open('temp_backup_file', 'w') as p:
