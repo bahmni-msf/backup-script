@@ -1,0 +1,26 @@
+# Stop Bahmni(primary)
+bahmni -i prod stop
+
+# Take Db dump of bahmni on primary server (on Primary)
+bahmni -i prod backup --backup_type=db --options=openmrs
+
+# Back up the /home/bahmni folder (on Primary) (check for available disk free space using df -h)
+mkdir -p /home/backup/release_version
+rsync --ignore-existing -vl --recursive /home/bahmni /home/backup/release_version/
+
+# Take backup of current inventory file and setup.yml (/etc/bahmni-installer/inventory)(only primary)
+cp /etc/bahmni-installer/prod /home/backup/release_version/local
+cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
+
+# Take nagios folder backup
+mkdir -p /home/backup/release_version/nagios
+rsync --ignore-existing -vl --recursive /etc/nagios/ /home/backup/release_version/nagios
+
+# Backup of ssl.conf to /home/backup/release_version/ssl.conf
+cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
+
+# Check if the backup files(local and setup.yml and folder bahmni) are created (on Primary)
+ls -lrt /home/backup/release_version
+
+# Expected format for db backup file openmrs_dump_YYYYMMDDHHMMSS.sql.gz
+ls -lrt /data/openmrs/
