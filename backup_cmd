@@ -1,26 +1,31 @@
-# Stop Bahmni(primary)
-bahmni -i prod stop
+# Stopping Bahmni...
+bahmni -i prod stop >/dev/null 2>&1
+# Bahmni Stopped
 
-# Take Db dump of bahmni on primary server (on Primary)
-bahmni -i prod backup --backup_type=db --options=openmrs
+# Taking Database Dump for the Primary Server...
+bahmni -i prod backup --backup_type=db --options=openmrs >/dev/null 2>&1
+# Database backup phase completed
 
-# Back up the /home/bahmni folder (on Primary) (check for available disk free space using df -h)
-mkdir -p /home/backup/release_version
-rsync --ignore-existing -vl --recursive /home/bahmni /home/backup/release_version/
+# Taking incremental backup for bahmni...
+mkdir -p /home/backup/release_version >/dev/null 2>&1
+rsync --ignore-existing -avl --recursive /home/bahmni /home/backup/release_version/ >/dev/null 2>&1
+# Incremental backup completed
 
-# Take backup of current inventory file and setup.yml (/etc/bahmni-installer/inventory)(only primary)
+# Taking backup of current inventory file and setup.yml...
 cp /etc/bahmni-installer/prod /home/backup/release_version/local
 cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
+# Done
 
-# Take nagios folder backup
+# nagios folder incremental backup started...
 mkdir -p /home/backup/release_version/nagios
-rsync --ignore-existing -vl --recursive /etc/nagios/ /home/backup/release_version/nagios
+rsync --ignore-existing -avl --recursive /etc/nagios/ /home/backup/release_version/nagios >/dev/null 2>&1
+# nagios folder incremental backup completed
 
-# Backup of ssl.conf to /home/backup/release_version/ssl.conf
+# Taking backup of ssl.conf...
 cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
 
-# Check if the backup files(local and setup.yml and folder bahmni) are created (on Primary)
+# Listing latest backup files(local and setup.yml and folder bahmni)
 ls -lrt /home/backup/release_version
 
-# Expected format for db backup file openmrs_dump_YYYYMMDDHHMMSS.sql.gz
-ls -lrt /data/openmrs/
+# Listing latest openmrs database dump
+ls -lrt /data/openmrs/ | head -2 | tail -1 | awk '{print $9}'
