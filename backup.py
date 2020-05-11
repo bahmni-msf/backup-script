@@ -10,6 +10,7 @@ def backup(version, pgsql_ver):
         content = o.read()
         o.seek(0)
         p.write(content.replace("release_version", str(version)))
+        p.seek(0)
         p.write(content.replace("pgsql_version", str(pgsql_ver)))
 
     # Execute unix commands for backup for the current release
@@ -26,5 +27,4 @@ def backup(version, pgsql_ver):
 
 
 backup(release_version, pgsql_version)
-
 
