@@ -12,6 +12,7 @@ rsync -avl  /home/bahmni/ /home/backup/incremental_home_bahmni/ >/dev/null 2>&1
 # Incremental backup completed
 
 # Taking backup of current inventory file and setup.yml...
+mkdir -p /home/backup/release_version/
 cp /etc/bahmni-installer/prod /home/backup/release_version/local
 cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
 # Done
