@@ -27,13 +27,13 @@ pg_dump -U analytics metabase | gzip > /data/bahmni-mart/release_version-metabas
 
 # Taking pg_hba and bahmni-mart back up...
 mkdir -p /home/backup/incremental_bahmni_mart/bahmni-mart-backup
-rsync -avl /var/lib/pgsql/pgsql_version/data/pg_hba.conf /home/backup/incremental_bahmni_mart/bahmni-mart-backup/
+rsync -avl /var/lib/pgsql/pgsql_version/data/pg_hba.conf /home/backup/incremental_bahmni_mart/bahmni-mart-backup/ >/dev/null 2>&1
 rsync -avl /opt/bahmni-mart /home/backup/incremental_bahmni_mart/bahmni-mart-backup/ >/dev/null 2>&1
 # Done
 
 # Taking backup for bahmni-mart inventories and setup.yml...
-rsync -avl /etc/bahmni-mart-playbook/inventories/bahmni-mart /home/backup/incremental_bahmni_mart/bahmni-mart-backup/bahmni-mart-inventory
-rsync -avl /etc/bahmni-mart-playbook/setup.yml /home/backup/incremental_bahmni_mart/bahmni-mart-backup/
+rsync -avl /etc/bahmni-mart-playbook/inventories/bahmni-mart /home/backup/incremental_bahmni_mart/bahmni-mart-backup/bahmni-mart-inventory >/dev/null 2>&1
+rsync -avl /etc/bahmni-mart-playbook/setup.yml /home/backup/incremental_bahmni_mart/bahmni-mart-backup/ >/dev/null 2>&1
 # Done
 
 # nagios folder incremental backup started...
