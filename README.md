@@ -18,7 +18,7 @@ This scipt will execute all the commands necessaary for taking backup during rel
 ### Dependencies
 - Program works with inbuilt python libraries.
 - No external library required.
-- works with python version 2.x / 3.x
+- works with python version 2.7 or higher
 
 ### How to run
 - git clone https://github.com/bahmni-msf/backup-script.git ( from any path)
