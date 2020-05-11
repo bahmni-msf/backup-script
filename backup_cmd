@@ -52,10 +52,10 @@ ls -lrt /home/backup/release_version
 ls -lrt /home/backup/incremental_home_bahmni/
 
 # Listing Incrimental backups(bahmni-mart)...
-/home/backup/incremental_bahmni_mart/
+ls -ltr /home/backup/incremental_bahmni_mart/
 
 # Listing Incrimental backups(incremental_nagios)...
-/home/backup/incremental_nagios/
+ls -ltr /home/backup/incremental_nagios/
 
 # Listing latest openmrs database dump...
 ls -Art /data/openmrs/ | tail -n 1
