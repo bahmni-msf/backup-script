@@ -1,7 +1,7 @@
 import os
 
 release_version = 'rel_1.2'
-pgsql_version = '0.92'
+pgsql_version = '9.6'
 
 
 def backup(version, pgsql_ver):

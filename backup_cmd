@@ -20,9 +20,9 @@ cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
 # Taking Database dump for bahmni-mart and metabase...
 mkdir -p /data/bahmni-mart
 # Enter analytics password :
-pg_dump -U analytics analytics | gzip > /data/bahmni-mart/release_version-analytics.gz
+bahmni-mart backup
 # Enter metabase password :
-pg_dump -U analytics metabase | gzip > /data/bahmni-mart/release_version-metabase.gz
+bahmni-mart metabase-backup
 # Done
 
 # Taking pg_hba and bahmni-mart back up...
@@ -45,10 +45,17 @@ rsync --ignore-existing -avl --recursive /etc/nagios/ /home/backup/incremental_n
 cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
 
 # Listing latest backups...
+ls -lrt /home/backup/
 ls -lrt /home/backup/release_version
 
-# Listing Incrimental backups...
+# Listing Incrimental backups(bahmni)...
 ls -lrt /home/backup/incremental_home_bahmni/
+
+# Listing Incrimental backups(bahmni-mart)...
+/home/backup/incremental_bahmni_mart/
+
+# Listing Incrimental backups(incremental_nagios)...
+/home/backup/incremental_nagios/
 
 # Listing latest openmrs database dump...
 ls -Art /data/openmrs/ | tail -n 1
