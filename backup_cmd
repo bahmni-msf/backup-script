@@ -18,7 +18,9 @@ cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
 
 # Taking Database dump for bahmni-mart and metabase...
 mkdir -p /data/bahmni-mart
+# Enter analytics password :
 pg_dump -U analytics analytics | gzip > /data/bahmni-mart/release_version-analytics.gz
+# Enter metabase password :
 pg_dump -U analytics metabase | gzip > /data/bahmni-mart/release_version-metabase.gz
 # Done
 
