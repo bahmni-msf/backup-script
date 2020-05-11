@@ -47,4 +47,4 @@ cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
 ls -lrt /home/backup/release_version
 
 # Listing latest openmrs database dump...
-ls -lrt /data/openmrs/ | head -2 | tail -1 | awk '{print $9}'
+ls -Art /data/openmrs/ | tail -n 1
