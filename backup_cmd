@@ -25,19 +25,19 @@ pg_dump -U analytics metabase | gzip > /data/bahmni-mart/release_version-metabas
 # Done
 
 # Taking pg_hba and bahmni-mart back up...
-mkdir -p /home/backup/release_version/bahmni-mart-backup
-cp /var/lib/pgsql/9.2/data/pg_hba.conf /home/backup/release_version/bahmni-mart-backup/.
-cp -R /opt/bahmni-mart /home/backup/release_version/bahmni-mart-backup/
+mkdir -p /home/backup/incremental_bahmni_mart/bahmni-mart-backup
+rsync -avl /var/lib/pgsql/pgsql_version/data/pg_hba.conf /home/backup/incremental_bahmni_mart/bahmni-mart-backup/
+rsync -avl /opt/bahmni-mart /home/backup/incremental_bahmni_mart/bahmni-mart-backup/ >/dev/null 2>&1
 # Done
 
 # Taking backup for bahmni-mart inventories and setup.yml...
-cp /etc/bahmni-mart-playbook/inventories/bahmni-mart /home/backup/release_version/bahmni-mart-backup/bahmni-mart-inventory
-cp /etc/bahmni-mart-playbook/setup.yml /home/backup/release_version/bahmni-mart-backup/.
+rsync -avl /etc/bahmni-mart-playbook/inventories/bahmni-mart /home/backup/incremental_bahmni_mart/bahmni-mart-backup/bahmni-mart-inventory
+rsync -avl /etc/bahmni-mart-playbook/setup.yml /home/backup/incremental_bahmni_mart/bahmni-mart-backup/
 # Done
 
 # nagios folder incremental backup started...
-mkdir -p /home/backup/release_version/nagios
-rsync --ignore-existing -avl --recursive /etc/nagios/ /home/backup/release_version/nagios >/dev/null 2>&1
+mkdir -p /home/backup/incremental_nagios/nagios
+rsync --ignore-existing -avl --recursive /etc/nagios/ /home/backup/incremental_nagios/nagios >/dev/null 2>&1
 # nagios folder incremental backup completed
 
 # Taking backup of ssl.conf...
@@ -45,6 +45,9 @@ cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
 
 # Listing latest backups...
 ls -lrt /home/backup/release_version
+
+# Listing latest backups...
+ls -lrt /home/backup/incremental_nagios
 
 # Listing latest openmrs database dump...
 ls -Art /data/openmrs/ | tail -n 1
