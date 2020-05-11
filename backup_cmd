@@ -16,7 +16,7 @@ cp /etc/bahmni-installer/prod /home/backup/release_version/local
 cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
 # Done
 
-Taking Database dump for bahmni-mart and metabase...
+# Taking Database dump for bahmni-mart and metabase...
 mkdir -p /data/bahmni-mart
 pg_dump -U analytics analytics | gzip > /data/bahmni-mart/release_version-analytics.gz
 pg_dump -U analytics metabase | gzip > /data/bahmni-mart/release_version-metabase.gz
