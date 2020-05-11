@@ -7,8 +7,8 @@ bahmni -i prod backup --backup_type=db --options=openmrs >/dev/null 2>&1
 # Database backup phase completed
 
 # Taking incremental backup for bahmni...
-mkdir -p /home/backup/release_version >/dev/null 2>&1
-rsync --ignore-existing -avl --recursive /home/bahmni /home/backup/release_version/ >/dev/null 2>&1
+mkdir -p /home/backup/incremental_home_bahmni/
+rsync -avl  /home/bahmni/ /home/backup/incremental_home_bahmni/ >/dev/null 2>&1
 # Incremental backup completed
 
 # Taking backup of current inventory file and setup.yml...
