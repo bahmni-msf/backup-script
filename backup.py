@@ -20,10 +20,10 @@ def backup(version, pgsql_ver):
         for line in p:
             if line:
                 if line.startswith("#"):
-                    print("'\033[1;33m {}\033[0m'".format(line))
+                    print("'\033[1;33m {0}\033[0m'".format(line))
                 else:
                     # subprocess.check_output(line, shell=False)
-                    os.system('{}'.format(line))
+                    os.system('{0}'.format(line))
 
     os.remove('temp_backup_file')
 
