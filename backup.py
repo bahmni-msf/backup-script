@@ -9,13 +9,15 @@ def backup(version, pgsql_ver):
     with open("backup_cmd", 'r') as o:
         with open('temp_backup_file', 'w') as p:
             content = o.read()
-            o.seek(0)
             p.write(content.replace("release_version", str(version)))
-            p.seek(0)
-            p.write(content.replace("pgsql_version", str(pgsql_ver)))
+
+    with open('temp_backup_file', 'r+') as p:
+        content = p.read()
+        p.seek(0)
+        p.write(content.replace("pgsql_version", str(pgsql_ver)))
 
 
-    # Execute unix commands for backup for the current release
+    #Execute unix commands for backup for the current release
     with open("temp_backup_file", 'r') as p:
         for line in p:
             if line:
@@ -29,4 +31,3 @@ def backup(version, pgsql_ver):
 
 
 backup(release_version, pgsql_version)
-

@@ -19,9 +19,9 @@ cp /etc/bahmni-installer/setup.yml /home/backup/release_version/setup.yml
 
 # Taking Database dump for bahmni-mart and metabase...
 mkdir -p /data/bahmni-mart
-# Enter analytics password :
+# Enter analytics password (If Any) :
 bahmni-mart backup
-# Enter metabase password :
+# Enter metabase password (If Any) :
 bahmni-mart metabase-backup
 # Done
 
@@ -52,7 +52,7 @@ ls -lrt /home/backup/release_version
 ls -lrt /home/backup/incremental_home_bahmni/
 
 # Listing Incrimental backups(bahmni-mart)...
-ls -ltr /home/backup/incremental_bahmni_mart/
+ls -ltr /home/backup/incremental_bahmni_mart/bahmni-mart-backup/
 
 # Listing Incrimental backups(incremental_nagios)...
 ls -ltr /home/backup/incremental_nagios/
