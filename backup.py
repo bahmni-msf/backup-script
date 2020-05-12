@@ -6,12 +6,14 @@ pgsql_version = '9.6'
 
 def backup(version, pgsql_ver):
     # Update the release version to current one.
-    with open("backup_cmd", 'r') as o, open('temp_backup_file', 'w') as p:
-        content = o.read()
-        o.seek(0)
-        p.write(content.replace("release_version", str(version)))
-        p.seek(0)
-        p.write(content.replace("pgsql_version", str(pgsql_ver)))
+    with open("backup_cmd", 'r') as o:
+        with open('temp_backup_file', 'w') as p:
+            content = o.read()
+            o.seek(0)
+            p.write(content.replace("release_version", str(version)))
+            p.seek(0)
+            p.write(content.replace("pgsql_version", str(pgsql_ver)))
+
 
     # Execute unix commands for backup for the current release
     with open("temp_backup_file", 'r') as p:
