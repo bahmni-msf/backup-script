@@ -44,6 +44,10 @@ rsync --ignore-existing -avl --recursive /etc/nagios/ /home/backup/incremental_n
 # Taking backup of ssl.conf...
 cp /etc/httpd/conf.d/ssl.conf /home/backup/release_version/ssl.conf
 
+# Taking cronjob backup
+mkdir -p /home/backup/release_version/cron_backup
+crontab -l > /home/backup/release_version/cron_backup/crontab.backup
+
 # Listing latest backups...
 ls -lrt /home/backup/
 # Under the new release (release_version)...
